@@ -170,7 +170,7 @@ func (u *Unifi) apicmdPut(site *Site, cmd string, data interface{}) error {
 type command struct {
 	Mac       string `json:"mac"`
 	Cmd       string `json:"cmd"`
-	PortIndex int    `json:"port_idx"`
+	PortIndex int    `json:"port_idx,omitempty"`
 	Minutes   int    `json:"minutes,omitempty"`
 }
 
