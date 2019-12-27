@@ -168,9 +168,14 @@ func (u *Unifi) apicmdPut(site *Site, cmd string, data interface{}) error {
 }
 
 type command struct {
-	Mac     string `json:"mac"`
-	Cmd     string `json:"cmd"`
-	Minutes int    `json:"minutes,omitempty"`
+	Mac       string `json:"mac"`
+	Cmd       string `json:"cmd"`
+	PortIndex int    `json:"port_idx"`
+	Minutes   int    `json:"minutes,omitempty"`
+}
+
+func (u *Unifi) devportcmd(mac, cmd string, port int) error {
+	return u.maccmd("devmgr", command{Mac: mac, Cmd: cmd, PortIndex: port})
 }
 
 func (u *Unifi) devcmd(mac, cmd string) error {

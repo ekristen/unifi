@@ -198,6 +198,14 @@ func (s USW) Restart() error {
 	return s.u.devcmd(s.Mac, "restart")
 }
 
+func (s USW) RestartPort(port int) error {
+	if s.u == nil {
+		return ErrLoginFirst
+	}
+
+	return s.u.devportcmd(s.Mac, "power-cycle", port)
+}
+
 func (s USW) DeviceName() string {
 	if s.Name != "" {
 		return s.Name
